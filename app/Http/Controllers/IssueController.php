@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Issue as IssueResource;
 use App\Models\Issue;
 use Tymon\JWTAuth\JWTAuth;
+use Carbon\Carbon;
 
 /**
  * @resource Issue
@@ -57,10 +58,15 @@ class IssueController extends Controller
             'label_id' => 'sometimes|required|exists:labels,id|integer',
             'user_id' => 'sometimes|required|exists:users,id|integer',
             'name' => 'required',
+            'due_date' => 'date'
         ]);
 
         $input = $request->all();
         $input['created_by'] = $this->user->id;
+
+        if ($request->due_date) {
+            $input['due_date'] = Carbon::parse($input['due_date'])->format('Y-m-d H:i:s');
+        }
 
         $item = Issue::create($input);
         $item->labels()->sync($input['label_id']);
@@ -98,10 +104,15 @@ class IssueController extends Controller
             'label_id' => 'sometimes|required|exists:labels,id|integer',
             'user_id' => 'sometimes|required|exists:users,id|integer',
             'name' => 'required',
+            'due_date' => 'date'
         ]);
 
         $input = $request->all();
         $input['updated_by'] = $this->user->id;
+
+        if ($request->due_date) {
+            $input['due_date'] = Carbon::parse($input['due_date'])->format('Y-m-d H:i:s');
+        }
 
         $item = Issue::findOrFail($id);
         $item->update($input);
