@@ -18,7 +18,7 @@ class CreateIssuesTable extends Migration
             $table->integer('category_id')->unsigned();;
             $table->string('name');
             $table->text('description')->nullable();
-            $table->integer('created_by')->unsigned();
+            $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('deleted_by')->unsigned()->nullable();
             $table->date('due_date')->nullable();
