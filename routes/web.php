@@ -26,4 +26,12 @@ $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
         $router->put('{categoryId}', 'CategoryController@update');
         $router->delete('{categoryId}', 'CategoryController@destroy');
     });
+
+    $router->group(['prefix' => 'label'], function () use ($router) {
+        $router->get('/', 'LabelController@index');
+        $router->post('/', 'LabelController@store');
+        $router->get('{labelId}', 'LabelController@show');
+        $router->put('{labelId}', 'LabelController@update');
+        $router->delete('{labelId}', 'LabelController@destroy');
+    });
 });
