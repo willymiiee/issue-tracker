@@ -34,4 +34,12 @@ $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
         $router->put('{labelId}', 'LabelController@update');
         $router->delete('{labelId}', 'LabelController@destroy');
     });
+
+    $router->group(['prefix' => 'issue'], function () use ($router) {
+        $router->get('/', 'IssueController@index');
+        $router->post('/', 'IssueController@store');
+        $router->get('{issueId}', 'IssueController@show');
+        $router->put('{issueId}', 'IssueController@update');
+        $router->delete('{issueId}', 'IssueController@destroy');
+    });
 });
