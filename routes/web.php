@@ -19,4 +19,11 @@ $router->post('login', 'AuthController@login');
 $router->post('register', 'AuthController@register');
 
 $router->group(['middleware' => 'jwt.auth'], function () use ($router) {
+    $router->group(['prefix' => 'category'], function () use ($router) {
+        $router->get('/', 'CategoryController@index');
+        $router->post('/', 'CategoryController@store');
+        $router->get('{categoryId}', 'CategoryController@show');
+        $router->put('{categoryId}', 'CategoryController@update');
+        $router->delete('{categoryId}', 'CategoryController@destroy');
+    });
 });
