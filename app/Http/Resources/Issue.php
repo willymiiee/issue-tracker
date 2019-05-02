@@ -18,6 +18,7 @@ class Issue extends Resource
             'id' => $this->id,
             'category' => $this->category->name,
             'labels' => $this->labels,
+            'assignee' => $this->assignees,
             'name' => $this->name,
             'description' => $this->description,
             'due_date' => $this->due_date,
