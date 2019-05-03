@@ -1,6 +1,6 @@
 # Issue Tracker API
 
-This is a simple API for issue tracker app built using Laravel.
+This is a simple API for issue tracker app built using Lumen.
 
 How to run
 ---
